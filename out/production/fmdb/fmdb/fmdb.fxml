@@ -10,7 +10,7 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fmdb.Controller">
    <children>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="600.0">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="600.0">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0">
                <children>
@@ -27,33 +27,6 @@
                         <Insets bottom="10.0" top="30.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="4.0" prefWidth="300.0">
-                     <children>
-                        <Label text="Something:">
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <Label text="Ratings:">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ListView fx:id="userRatingList" onMouseClicked="#userRatingListClicked" prefHeight="200.0" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </ListView>
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0">
@@ -71,22 +44,52 @@
                         <Insets bottom="10.0" top="30.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="4.0" prefWidth="300.0">
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Button fx:id="ratingButton" alignment="CENTER" mnemonicParsing="false" onAction="#ratingButtonClicked" text="Rating">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Button>
+      <HBox alignment="CENTER" prefHeight="259.0" prefWidth="600.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Age:">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="ageField" />
+                     </children>
+                  </HBox>
+                  <Label text="Ratings:">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ListView fx:id="userRatingList" onMouseClicked="#userRatingListClicked" prefHeight="200.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </ListView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
                      <children>
                         <Label text="IMDB URL:">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="imdbUrlField">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
+                        <Label fx:id="imdbUrlField" />
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
                   </HBox>
                   <Label text="Ratings:">
                      <VBox.margin>
@@ -101,11 +104,9 @@
                </children>
             </VBox>
          </children>
-      </HBox>
-      <Button fx:id="ratingButton" alignment="CENTER" mnemonicParsing="false" onAction="#ratingButtonClicked" text="Rating">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
-      </Button>
+      </HBox>
    </children>
 </VBox>
