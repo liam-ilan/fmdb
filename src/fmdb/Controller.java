@@ -38,13 +38,17 @@ public class Controller {
         stage.show();
     }
 
+    // user
     public void renderUserDropdown() {
+        int oldIndex = userDropdown.getSelectionModel().getSelectedIndex();
+        userDropdown.getItems().clear();
+
         for (int i = 0; i < db.getPeople().size(); i += 1) {
             userDropdown.getItems().add(db.getPeople().get(i));
         }
 
         userDropdown.getItems().add("-- New User --");
-        userDropdown.getSelectionModel().select(0);
+        choseUserItem(oldIndex < 0 ? 0 : oldIndex);
     }
 
     public void choseUserItem(int index) {
@@ -62,13 +66,17 @@ public class Controller {
         }
     }
 
+    // movie
     public void renderMovieDropdown() {
+        int oldIndex = movieDropdown.getSelectionModel().getSelectedIndex();
+        movieDropdown.getItems().clear();
+
         for (int i = 0; i < db.getMovies().size(); i += 1) {
             movieDropdown.getItems().add(db.getMovies().get(i));
         }
 
         movieDropdown.getItems().add("-- New Movie --");
-        movieDropdown.getSelectionModel().select(0);
+        choseMovieItem(oldIndex < 0 ? 0 : oldIndex);
     }
 
     public void choseMovieItem(int index) {
@@ -88,6 +96,7 @@ public class Controller {
 
     // events
     public void initialize() {
+        db.addMovie(new Movie("joe"));
         renderMovieDropdown();
         renderUserDropdown();
     }
@@ -100,12 +109,21 @@ public class Controller {
         openScreen("create-user.fxml", 300, 150, "FMDB User");
     }
 
+    public void userDropdownClicked(MouseEvent mouseEvent) {
+        choseUserItem(userDropdown.getSelectionModel().getSelectedIndex());
+    }
+
     // Movie pane
     public void movieRatingListClicked(MouseEvent mouseEvent) {
     }
 
     public void movieDropdownButtonClicked(ActionEvent actionEvent) throws IOException {
         openScreen("create-movie.fxml", 300, 150, "FMDB Movie");
+    }
+
+    public void movieDropdownClicked(MouseEvent mouseEvent) {
+        choseMovieItem(movieDropdown.getSelectionModel().getSelectedIndex());
+        System.out.println(movieDropdown.getSelectionModel().getSelectedIndex());
     }
 
     // Rating Button

@@ -16,7 +16,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="300.0">
                      <children>
-                        <ChoiceBox fx:id="userDropdown" prefWidth="150.0" />
+                        <ChoiceBox fx:id="userDropdown" onMouseClicked="#userDropdownClicked" prefWidth="150.0" />
                         <Button fx:id="userDropdownButton" mnemonicParsing="false" onAction="#userDropdownButtonClicked" text="New">
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -33,7 +33,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="300.0">
                      <children>
-                        <ChoiceBox fx:id="movieDropdown" prefWidth="150.0" />
+                        <ChoiceBox fx:id="movieDropdown" onInputMethodTextChanged="#movieDropdownClicked" prefWidth="150.0" />
                         <Button fx:id="movieDropdownButton" mnemonicParsing="false" onAction="#movieDropdownButtonClicked" text="New">
                            <HBox.margin>
                               <Insets left="10.0" />
