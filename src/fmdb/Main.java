@@ -7,16 +7,20 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    static public Fmdb db = new Fmdb();
+    static public Controller fmdbController;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("fmdb.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fmdb.fxml"));
+        Parent root = loader.load();
+
         primaryStage.setTitle("Family Movie Database");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
+
+        fmdbController = loader.getController();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public static void main(String[] args) { launch(args); }
 }

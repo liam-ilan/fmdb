@@ -5,18 +5,24 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fmdb.Controller">
    <children>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="600.0">
+      <Button fx:id="ratingButton" alignment="CENTER" mnemonicParsing="false" onAction="#ratingButtonClicked" text="Rating">
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </Button>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="600.0">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="300.0">
                      <children>
-                        <ChoiceBox fx:id="userDropdown" onMouseClicked="#userDropdownClicked" prefWidth="150.0" />
+                        <ChoiceBox fx:id="userDropdown" prefWidth="150.0" />
                         <Button fx:id="userDropdownButton" mnemonicParsing="false" onAction="#userDropdownButtonClicked" text="New">
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -24,7 +30,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="10.0" top="30.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
                </children>
@@ -33,7 +39,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="300.0">
                      <children>
-                        <ChoiceBox fx:id="movieDropdown" onInputMethodTextChanged="#movieDropdownClicked" prefWidth="150.0" />
+                        <ChoiceBox fx:id="movieDropdown" prefWidth="150.0" />
                         <Button fx:id="movieDropdownButton" mnemonicParsing="false" onAction="#movieDropdownButtonClicked" text="New">
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -41,35 +47,44 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="10.0" top="30.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
                </children>
             </VBox>
          </children>
       </HBox>
-      <Button fx:id="ratingButton" alignment="CENTER" mnemonicParsing="false" onAction="#ratingButtonClicked" text="Rating">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </Button>
+      <Separator prefWidth="200.0" />
       <HBox alignment="CENTER" prefHeight="259.0" prefWidth="600.0">
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
+                  <HBox prefHeight="30.0" prefWidth="200.0">
                      <children>
-                        <Label text="Age:">
+                        <Label text="Average Rating:">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="ageField" />
+                        <Label fx:id="userAverageRatingField" />
                      </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
                   </HBox>
+                  <Label text="Top 5:">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ListView fx:id="userTopList" onMouseClicked="#userRatingListClicked" prefHeight="200.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </ListView>
                   <Label text="Ratings:">
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
                   <ListView fx:id="userRatingList" onMouseClicked="#userRatingListClicked" prefHeight="200.0" prefWidth="200.0">
@@ -79,9 +94,62 @@
                   </ListView>
                </children>
             </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
+                  <HBox layoutX="10.0" layoutY="61.0" prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Average Rating:">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="averageRatingField" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Year:">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="yearField" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Genre:">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="GenreField" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label text="MPCR:">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="mpcrField" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
                      <children>
                         <Label text="IMDB URL:">
                            <HBox.margin>
@@ -90,6 +158,9 @@
                         </Label>
                         <Label fx:id="imdbUrlField" />
                      </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
                   </HBox>
                   <Label text="Ratings:">
                      <VBox.margin>
