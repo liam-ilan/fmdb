@@ -38,7 +38,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="nameInput1" />
+            <TextField fx:id="yearInput" />
          </children>
          <VBox.margin>
             <Insets left="10.0" />
@@ -51,7 +51,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="nameInput3" />
+            <TextField fx:id="genreInput" />
          </children>
          <VBox.margin>
             <Insets left="10.0" />
@@ -64,7 +64,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="nameInput2" />
+            <TextField fx:id="mpcrInput" />
          </children>
          <VBox.margin>
             <Insets left="10.0" />

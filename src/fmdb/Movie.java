@@ -6,7 +6,7 @@ public class Movie {
 
     private String imdbUrl;
     private String mpcr;
-    private int year;
+    private String year;
     private String genre;
 
     private ArrayList<Rating> ratings = new ArrayList<Rating>();
@@ -15,7 +15,7 @@ public class Movie {
         this.name = name;
     }
 
-    public Movie(String name, String imdbUrl, String mpcr, int year, String genre) {
+    public Movie(String name, String imdbUrl, String mpcr, String year, String genre) {
         this.name = name;
         this.imdbUrl = imdbUrl;
         this.mpcr = mpcr;
@@ -26,8 +26,8 @@ public class Movie {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public int getYear() { return year; }
-    public void setYear(int year) { this.year = year; }
+    public String getYear() { return year; }
+    public void setYear(String year) { this.year = year; }
 
     public String getGenre() { return genre; }
     public void setGenre(String genre) { this.genre = genre; }
@@ -38,7 +38,7 @@ public class Movie {
     public String getMpcr() { return mpcr; }
     public void setMpcr(String mpcr) { this.mpcr = mpcr; }
 
-    public void update(String name, String imdbUrl, String mpcr, int year, String genre) {
+    public void update(String name, String imdbUrl, String mpcr, String year, String genre) {
         this.name = name;
         this.imdbUrl = imdbUrl;
         this.mpcr = mpcr;

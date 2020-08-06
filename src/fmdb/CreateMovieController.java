@@ -11,34 +11,58 @@ import static fmdb.Main.fmdbController;
 public class CreateMovieController {
     public TextField imdbInput;
     public TextField nameInput;
+    public TextField yearInput;
+    public TextField genreInput;
+    public TextField mpcrInput;
+
     public Boolean movieCreationState;
     public Button submitButton;
 
-    // remains undefined if creating new movie
     public Movie movie;
 
     public void initialize() {
+
+        // get movieCreationState from main controller
         movieCreationState = fmdbController.movieCreationState;
 
+        // if editing
         if (!movieCreationState) {
-            movie = db.getMovies().get(fmdbController.movieDropdown.getSelectionModel().getSelectedIndex());
-            nameInput.setText(movie.getName());
-        };
-    }
-    public void createMovie() {
-        db.addMovie(new Movie(nameInput.getText()));
-        fmdbController.renderMovieDropdown();
-    }
 
-    public void editMovie() {
-        movie.setName(nameInput.getText());
-        fmdbController.renderMovieDropdown();
+            // get movie
+            movie = db.getMovies().get(fmdbController.movieDropdown.getSelectionModel().getSelectedIndex());
+
+            // set inputs
+            nameInput.setText(movie.getName());
+            imdbInput.setText(movie.getImdbUrl());
+            yearInput.setText(movie.getYear());
+            genreInput.setText(movie.getGenre());
+            mpcrInput.setText(movie.getMpcr());
+
+        // if creating
+        } else {
+            movie = new Movie("");
+            yearInput.setText("2020");
+        }
     }
 
     public void submitButtonClicked(ActionEvent actionEvent) {
-        if (movieCreationState) createMovie();
-        else editMovie();
+        // save values to movie
 
+        movie.update(
+                nameInput.getText(),
+                imdbInput.getText(),
+                mpcrInput.getText(),
+                yearInput.getText(),
+                genreInput.getText()
+        );
+
+        // add movie to db if creating new movie
+        if (movieCreationState) db.addMovie(movie);
+
+        // render
+        fmdbController.renderMovieDropdown();
+
+        // close
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.close();
     }

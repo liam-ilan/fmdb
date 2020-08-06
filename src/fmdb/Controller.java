@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,7 +19,6 @@ public class Controller {
     public ListView movieRatingList;
     public Button movieDropdownButton;
     public ChoiceBox movieDropdown;
-    public Label imdbUrlField;
 
     public ListView userRatingList;
     public Button userDropdownButton;
@@ -33,6 +31,12 @@ public class Controller {
     // false = edit, true = new movie
     public Boolean movieCreationState = false;
     public Boolean userCreationState = false;
+
+    public Label movieAverageRatingField;
+    public Label movieYearField;
+    public Label movieGenreField;
+    public Label movieMpcrField;
+    public Label movieImdbUrlField;
 
     // GUI methods
 
@@ -148,6 +152,36 @@ public class Controller {
         choseMovieItem(oldIndex < 0 ? 0 : oldIndex);
     }
 
+
+    // renders movie data
+    public void renderMovieData() {
+        movieGenreField.setText("");
+        movieYearField.setText("");
+        movieMpcrField.setText("");
+        movieImdbUrlField.setText("");
+        movieAverageRatingField.setText("");
+
+        int selectedIndex = movieDropdown.getSelectionModel().getSelectedIndex();
+
+        if (
+                movieDropdown.getItems().size() > 1 &&
+                        selectedIndex != movieDropdown.getItems().size() - 1
+        ) {
+
+            Movie selectedMovie = db.getMovies().get(selectedIndex);
+
+            movieGenreField.setText(selectedMovie.getGenre());
+            movieYearField.setText(String.valueOf(selectedMovie.getYear()));
+            movieMpcrField.setText(selectedMovie.getMpcr());
+            movieImdbUrlField.setText(selectedMovie.getImdbUrl());
+
+
+            movieAverageRatingField.setText(String.valueOf(
+                    (double) Math.round(selectedMovie.getAverageRating() * 10) / 10)
+            );
+        }
+    }
+
     public void choseMovieItem(int index) {
 
         // select item
@@ -175,6 +209,7 @@ public class Controller {
     // ratings
     public void renderRatingLists() {
         renderUserData();
+        renderMovieData();
 
         // user rating list
         // clear
@@ -246,17 +281,11 @@ public class Controller {
     }
 
     // User pane
-    public void userRatingListClicked(MouseEvent mouseEvent) {
-    }
-
     public void userDropdownButtonClicked(ActionEvent actionEvent) throws IOException {
        openUserScreen();
     }
 
     // Movie pane
-    public void movieRatingListClicked(MouseEvent mouseEvent) {
-    }
-
     public void movieDropdownButtonClicked(ActionEvent actionEvent) throws IOException {
         openMovieScreen();
     }
