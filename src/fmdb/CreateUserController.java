@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 import static fmdb.Main.db;
 import static fmdb.Main.fmdbController;
 
@@ -36,7 +38,7 @@ public class CreateUserController {
     }
 
 
-    public void submitButtonClicked(ActionEvent actionEvent) {
+    public void submitButtonClicked(ActionEvent actionEvent) throws IOException {
 
         // update user data
         user.setName(nameInput.getText());
@@ -46,6 +48,9 @@ public class CreateUserController {
 
         // render
         fmdbController.renderUserDropdown();
+
+        // write to file
+        db.write();
 
         // close
         Stage stage = (Stage) submitButton.getScene().getWindow();

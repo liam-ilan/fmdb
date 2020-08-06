@@ -1,9 +1,9 @@
 package fmdb;
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public class Person {
+public class Person implements Serializable {
     private String name;
     private ArrayList<Rating> ratings = new ArrayList<Rating>();
 

@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class Main extends Application {
     static public Fmdb db = new Fmdb();
     static public Controller fmdbController;
@@ -22,5 +24,15 @@ public class Main extends Application {
         fmdbController = loader.getController();
     }
 
-    public static void main(String[] args) { launch(args); }
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+        // read file and overwrite db
+        // if it throws error, do nothing
+        // (keeps db as an empty fmdb, as initialized)
+        try {
+            db = Fmdb.read();
+        } catch (Exception e) {}
+
+        launch(args);
+    }
 }

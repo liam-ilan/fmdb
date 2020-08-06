@@ -1,7 +1,8 @@
 package fmdb;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Movie {
+public class Movie implements Serializable {
     private String name;
 
     private String imdbUrl;

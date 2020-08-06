@@ -1,13 +1,37 @@
 package fmdb;
 
+import java.io.*;
 import java.util.ArrayList;
 
-public class Fmdb {
+public class Fmdb implements Serializable {
     private ArrayList<Movie> movies = new ArrayList<Movie>();
     private ArrayList<Person> people = new ArrayList<Person>();
 
     public ArrayList<Movie> getMovies() { return movies; }
     public ArrayList<Person> getPeople() { return people; }
+
+    // Requires: nothing
+    // Modifies: .fmdb file
+    // Effects: writes serializable object to .fmdb file
+
+    // note: read is static because we need to use this method to construct from file
+    // (acts like constructor)
+    public static Fmdb read() throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream(".fmdb");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Fmdb fmdb = (Fmdb) objectInputStream.readObject();
+        objectInputStream.close();
+
+        return fmdb;
+    }
+
+    public void write() throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(".fmdb");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(this);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+    }
 
     // Requires: Movie movie
     // Modifies: this.movies

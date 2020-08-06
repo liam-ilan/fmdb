@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 import static fmdb.Main.db;
 import static fmdb.Main.fmdbController;
 
@@ -37,7 +39,7 @@ public class RateController {
         movie.setText(selectedMovie.getName());
     }
 
-    public void submitRating(ActionEvent actionEvent) {
+    public void submitRating(ActionEvent actionEvent) throws IOException {
         boolean personRatedMovie = false;
         int i;
 
@@ -53,6 +55,9 @@ public class RateController {
         }
 
         fmdbController.renderRatingLists();
+
+        // write to file
+        db.write();
 
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.close();

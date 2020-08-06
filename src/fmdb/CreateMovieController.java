@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 import static fmdb.Main.db;
 import static fmdb.Main.fmdbController;
 
@@ -45,7 +47,7 @@ public class CreateMovieController {
         }
     }
 
-    public void submitButtonClicked(ActionEvent actionEvent) {
+    public void submitButtonClicked(ActionEvent actionEvent) throws IOException {
         // save values to movie
 
         movie.update(
@@ -61,6 +63,9 @@ public class CreateMovieController {
 
         // render
         fmdbController.renderMovieDropdown();
+
+        // write to file
+        db.write();
 
         // close
         Stage stage = (Stage) submitButton.getScene().getWindow();
