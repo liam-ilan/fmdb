@@ -12,7 +12,7 @@ public class Fmdb implements Serializable {
 
     // Requires: nothing
     // Modifies: .fmdb file
-    // Effects: writes serializable object to .fmdb file
+    // Effects: reads serializable object from .fmdb file, and creates a new fmdb from it
 
     // note: read is static because we need to use this method to construct from file
     // (acts like constructor)
@@ -25,6 +25,9 @@ public class Fmdb implements Serializable {
         return fmdb;
     }
 
+    // Requires: nothing
+    // Modifies: .fmdb file
+    // Effects: writes serializable object to .fmdb file
     public void write() throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(".fmdb");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);

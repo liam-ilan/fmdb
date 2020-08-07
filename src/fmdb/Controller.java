@@ -55,12 +55,12 @@ public class Controller {
 
     // open screen to create movie
     public void openMovieScreen() throws IOException {
-        openScreen("create-movie.fxml", 275, 250, "FMDB Movie");
+        openScreen("movie.fxml", 275, 250, "FMDB Movie");
     }
 
     // open screen to create user
     public void openUserScreen() throws IOException {
-        openScreen("create-user.fxml", 275, 100, "FMDB User");
+        openScreen("user.fxml", 275, 100, "FMDB User");
     }
 
     // user methods

@@ -43,7 +43,6 @@ public class CreateMovieController {
         // if creating
         } else {
             movie = new Movie("");
-            yearInput.setText("2020");
         }
     }
 
