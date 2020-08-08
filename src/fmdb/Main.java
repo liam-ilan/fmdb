@@ -18,7 +18,7 @@ public class Main extends Application {
         Parent root = loader.load();
 
         primaryStage.setTitle("Family Movie Database");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root, 950, 400));
         primaryStage.show();
 
         fmdbController = loader.getController();

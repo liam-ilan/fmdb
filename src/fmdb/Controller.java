@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -37,6 +38,8 @@ public class Controller {
     public Label movieGenreField;
     public Label movieMpcrField;
     public Label movieImdbUrlField;
+
+    public ListView topMoviesList;
 
     // GUI methods
 
@@ -180,6 +183,10 @@ public class Controller {
                     (double) Math.round(selectedMovie.getAverageRating() * 10) / 10)
             );
         }
+
+        // handle top movies list
+        topMoviesList.getItems().clear();
+        topMoviesList.getItems().addAll(db.topMovies());
     }
 
     public void choseMovieItem(int index) {
@@ -285,6 +292,10 @@ public class Controller {
        openUserScreen();
     }
 
+    public void userTopListClicked(MouseEvent mouseEvent) {
+        movieDropdown.getSelectionModel().select(userTopList.getSelectionModel().getSelectedItem());
+    }
+
     // Movie pane
     public void movieDropdownButtonClicked(ActionEvent actionEvent) throws IOException {
         openMovieScreen();
@@ -293,5 +304,9 @@ public class Controller {
     // Rating Button
     public void ratingButtonClicked(ActionEvent actionEvent) throws IOException {
         openScreen("rate.fxml", 300, 150, "FMDB Rating");
+    }
+
+    public void topMoviesListClicked(MouseEvent mouseEvent) {
+        movieDropdown.getSelectionModel().select(topMoviesList.getSelectionModel().getSelectedItem());
     }
 }

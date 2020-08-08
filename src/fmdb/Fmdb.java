@@ -2,6 +2,9 @@ package fmdb;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class Fmdb implements Serializable {
     private ArrayList<Movie> movies = new ArrayList<Movie>();
@@ -34,6 +37,22 @@ public class Fmdb implements Serializable {
         objectOutputStream.writeObject(this);
         objectOutputStream.flush();
         objectOutputStream.close();
+    }
+
+    // Requires: nothing
+    // Modifies: nothing
+    // Effects: returns movies ordered by average rating
+    public ArrayList<Movie> topMovies () {
+        ArrayList<Movie> topRated = new ArrayList(
+                this.movies
+                .stream()
+                .sorted(Comparator.comparing(Movie::getAverageRating))
+                .collect(Collectors.toList())
+        );
+
+        Collections.reverse(topRated);
+
+        return topRated;
     }
 
     // Requires: Movie movie

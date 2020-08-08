@@ -45,7 +45,7 @@ public class RateController {
         // note: selection is by index, not by value
         if (personRatedMovie) {
             scoreDropdown.getSelectionModel().select(
-                    (int) selectedPerson.getRatings().get(ratingIndex).getScore() * 2 + 1
+                    (int) (selectedPerson.getRatings().get(ratingIndex).getScore() * 2)
             );
         } else {
             // default, 7.5
