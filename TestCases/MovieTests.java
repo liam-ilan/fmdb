@@ -46,6 +46,20 @@ public class MovieTests {
     }
 
     @Test
+    public void testGetAverageRating() {
+        // (9.5) / 1
+        assertEquals(movie.getAverageRating(), 9.5, 0);
+
+        // (9.5 + 7) / 2
+        new Rating(new Person("Neo"), 7, movie);
+        assertEquals(8.25, movie.getAverageRating(), 0);
+
+        // (9.5 + 8.25 + 10) / 3
+        new Rating(new Person("Marty McFly"), 10, movie);
+        assertEquals(8.833333333333334, movie.getAverageRating(), 0);
+    }
+
+    @Test
     public void testToString() {
         assertEquals(movie.getName(), movie.toString());
     }
