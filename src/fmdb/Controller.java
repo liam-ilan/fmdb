@@ -293,7 +293,9 @@ public class Controller {
     }
 
     public void userTopListClicked(MouseEvent mouseEvent) {
-        movieDropdown.getSelectionModel().select(userTopList.getSelectionModel().getSelectedItem());
+        if (userTopList.getSelectionModel().getSelectedItem() != null) {
+            movieDropdown.getSelectionModel().select(userTopList.getSelectionModel().getSelectedItem());
+        }
     }
 
     // Movie pane
@@ -306,7 +308,10 @@ public class Controller {
         openScreen("rate.fxml", 300, 150, "FMDB Rating");
     }
 
+    // top movies list
     public void topMoviesListClicked(MouseEvent mouseEvent) {
-        movieDropdown.getSelectionModel().select(topMoviesList.getSelectionModel().getSelectedItem());
+        if (topMoviesList.getSelectionModel().getSelectedItem() != null) {
+            movieDropdown.getSelectionModel().select(topMoviesList.getSelectionModel().getSelectedItem());
+        }
     }
 }

@@ -6,6 +6,8 @@ import fmdb.Fmdb;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class FmdbTests {
@@ -42,8 +44,33 @@ public class FmdbTests {
     }
 
     @Test
-    public void testRemovePerson() {
-        fmdb.removePerson(fmdb.getPeople().get(2));
-        assertEquals(2, fmdb.getPeople().size());
+    public void testTopMovies() {
+        Fmdb db = new Fmdb();
+
+        Person test = new Person("test");
+
+        Movie a = new Movie("a");
+        Movie b = new Movie("b");
+        Movie c = new Movie("c");
+        Movie d = new Movie("d");
+
+        db.addPerson(test);
+
+        db.addMovie(a);
+        db.addMovie(b);
+        db.addMovie(c);
+        db.addMovie(d);
+
+        new Rating(test, 8, c);
+        new Rating(test, 9, a);
+        new Rating(test, 10, b);
+
+        ArrayList<Movie> topMovies = db.topMovies();
+
+        // note, d comes first, as it has no ratings
+        assertEquals(d, topMovies.get(0));
+        assertEquals(b, topMovies.get(1));
+        assertEquals(a, topMovies.get(2));
+        assertEquals(c, topMovies.get(3));
     }
 }

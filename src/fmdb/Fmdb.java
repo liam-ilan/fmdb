@@ -41,7 +41,7 @@ public class Fmdb implements Serializable {
 
     // Requires: nothing
     // Modifies: nothing
-    // Effects: returns movies ordered by average rating
+    // Effects: returns movies ordered by average rating, with first movies being unrated
     public ArrayList<Movie> topMovies () {
         ArrayList<Movie> topRated = new ArrayList(
                 this.movies
