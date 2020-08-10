@@ -2,7 +2,9 @@
 ## About
 FMDb is an app that helps a family keep a record of movies watched. It allows you to see the top rated movies, average ratings, and stats of each movie, acording to your family's ratings.
 
-It was created as the final assignment for VLN Computer Programming 11.
+![](fmdb-gui.png)
+
+FMDb was created as the final assignment for VLN Computer Programming 11.
 
 ## Running
 1. Clone the repo.
